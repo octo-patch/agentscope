@@ -19,10 +19,10 @@ class TestMiniMaxChatModel(IsolatedAsyncioTestCase):
     def test_init_default_params(self) -> None:
         with patch("openai.AsyncClient") as mock_client:
             model = MiniMaxChatModel(
-                model_name="MiniMax-M2.5",
+                model_name="MiniMax-M3",
                 api_key="test_key",
             )
-            self.assertEqual(model.model_name, "MiniMax-M2.5")
+            self.assertEqual(model.model_name, "MiniMax-M3")
             self.assertTrue(model.stream)
             self.assertEqual(model.generate_kwargs, {})
             mock_client.assert_called_once_with(
@@ -35,13 +35,13 @@ class TestMiniMaxChatModel(IsolatedAsyncioTestCase):
         client_kwargs = {"timeout": 30, "base_url": "https://api.minimaxi.com/v1"}
         with patch("openai.AsyncClient") as mock_client:
             model = MiniMaxChatModel(
-                model_name="MiniMax-M2.5-highspeed",
+                model_name="MiniMax-M2.7-highspeed",
                 api_key="test_key",
                 stream=False,
                 client_kwargs=client_kwargs,
                 generate_kwargs=generate_kwargs,
             )
-            self.assertEqual(model.model_name, "MiniMax-M2.5-highspeed")
+            self.assertEqual(model.model_name, "MiniMax-M2.7-highspeed")
             self.assertFalse(model.stream)
             self.assertEqual(model.generate_kwargs, generate_kwargs)
             mock_client.assert_called_once_with(
@@ -56,7 +56,7 @@ class TestMiniMaxChatModel(IsolatedAsyncioTestCase):
             mock_client_class.return_value = mock_client
 
             model = MiniMaxChatModel(
-                model_name="MiniMax-M2.5",
+                model_name="MiniMax-M3",
                 api_key="test_key",
                 stream=False,
             )
@@ -72,7 +72,7 @@ class TestMiniMaxChatModel(IsolatedAsyncioTestCase):
 
             result = await model(messages)
             call_args = mock_client.chat.completions.create.call_args[1]
-            self.assertEqual(call_args["model"], "MiniMax-M2.5")
+            self.assertEqual(call_args["model"], "MiniMax-M3")
             self.assertEqual(call_args["messages"], messages)
             self.assertFalse(call_args["stream"])
             self.assertIsInstance(result, ChatResponse)
@@ -87,7 +87,7 @@ class TestMiniMaxChatModel(IsolatedAsyncioTestCase):
             mock_client_class.return_value = mock_client
 
             model = MiniMaxChatModel(
-                model_name="MiniMax-M2.5",
+                model_name="MiniMax-M3",
                 api_key="test_key",
                 stream=False,
             )
@@ -119,7 +119,7 @@ class TestMiniMaxChatModel(IsolatedAsyncioTestCase):
             mock_client_class.return_value = mock_client
 
             model = MiniMaxChatModel(
-                model_name="MiniMax-M2.5",
+                model_name="MiniMax-M3",
                 api_key="test_key",
                 stream=False,
             )
@@ -175,7 +175,7 @@ class TestMiniMaxChatModel(IsolatedAsyncioTestCase):
             mock_client_class.return_value = mock_client
 
             model = MiniMaxChatModel(
-                model_name="MiniMax-M2.5",
+                model_name="MiniMax-M3",
                 api_key="test_key",
                 stream=True,
             )
@@ -214,7 +214,7 @@ class TestMiniMaxChatModel(IsolatedAsyncioTestCase):
             mock_client_class.return_value = mock_client
 
             model = MiniMaxChatModel(
-                model_name="MiniMax-M2.5",
+                model_name="MiniMax-M3",
                 api_key="test_key",
                 stream=True,
             )
@@ -253,7 +253,7 @@ class TestMiniMaxChatModel(IsolatedAsyncioTestCase):
             mock_client_class.return_value = mock_client
 
             model = MiniMaxChatModel(
-                model_name="MiniMax-M2.5",
+                model_name="MiniMax-M3",
                 api_key="test_key",
                 stream=False,
             )

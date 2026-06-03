@@ -12,7 +12,7 @@ from ..token import TokenCounterBase
 
 class MiniMaxChatFormatter(TruncatedFormatterBase):
     """The MiniMax formatter class for chatbot scenario, where only a user
-    and an agent are involved. MiniMax M2.5 uses <think></think> tags for
+    and an agent are involved. MiniMax M3 uses <think></think> tags for
     reasoning content in the message content field.
     """
 

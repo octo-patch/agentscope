@@ -56,7 +56,8 @@ def _parse_think_tags(content: str) -> tuple[str, str]:
 
 
 class MiniMaxChatModel(ChatModelBase):
-    """The MiniMax chat model class, compatible with MiniMax-M2.5 series."""
+    """The MiniMax chat model class, compatible with MiniMax-M3 series
+    (with M2.7 and M2.7-highspeed also supported)."""
 
     def __init__(
         self,
